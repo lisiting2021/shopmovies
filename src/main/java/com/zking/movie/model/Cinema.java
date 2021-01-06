@@ -3,6 +3,7 @@ package com.zking.movie.model;
 public class Cinema {
     private Long cinemaId;
 
+
     private String cinemaName;
 
     private String cinemaAddress;
