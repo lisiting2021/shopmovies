@@ -7,10 +7,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 通过context:component-scan元素扫描指定包下的控制器-->
     <!--1) 扫描com.zking.zf及子子孙孙包下的控制器(扫描范围过大，耗时)-->
-    <context:component-scan base-package="com.zking.shiro"/>
+    <context:component-scan base-package="com.zking.movie"/>
 
     <!--1) use-dafault-filters="false"的情况下，根据表达式包含(include-filter)或排除(exclude-filter)指定包-->
-    <context:component-scan base-package="com.zking.shiro" use-default-filters="false">
+    <context:component-scan base-package="com.zking.movie" use-default-filters="false">
         <context:include-filter type="regex" expression=".+\.controller\..*"/>
     </context:component-scan>
 

@@ -11,7 +11,7 @@
 
 
 	<!--spring集成shiro-->
-	<bean id="shiroRealm" class="com.zking.movie.realm.Myrealm">
+	<bean id="shiroRealm" class="com.zking.shiro.realm.Myrealm">
 		<property name="credentialsMatcher">
 			<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 				<!--指定hash算法为MD5-->

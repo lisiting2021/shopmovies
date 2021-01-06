@@ -13,7 +13,7 @@
 	<!-- 注解驱动 -->
 	<context:annotation-config/>
 	<!-- 用注解方式注入bean，并指定查找范围：com.zking.ssm及子子孙孙包-->
-	<context:component-scan base-package="com.zking.movie" use-default-filters="true">
+	<context:component-scan base-package="com.zking.shiro" use-default-filters="true">
 		<context:exclude-filter type="regex" expression=".+\.controller\..*"/>
 	</context:component-scan>
 	<!--2.引入外部jdbc配置-->
@@ -45,7 +45,7 @@
 		<!-- 自动扫描XxxMapping.xml文件，**任意路径 -->
 		<property name="mapperLocations" value="classpath*:mapper/*.xml"/>
 		<!-- 指定别名 -->
-		<property name="typeAliasesPackage" value="com/zking/movie/**/model"/>
+		<property name="typeAliasesPackage" value="com/zking/shiro/**/model"/>
 		<!--配置pagehelper插件-->
 		<property name="plugins">
 			<array>
@@ -65,7 +65,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--basePackage 属性是映射器接口文件的包路径。-->
 		<!--你可以使用分号或逗号 作为分隔符设置多于一个的包路径-->
-		<property name="basePackage" value="com/zking/movie/**/mapper"/>
+		<property name="basePackage" value="com/zking/shiro/**/mapper"/>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
 
