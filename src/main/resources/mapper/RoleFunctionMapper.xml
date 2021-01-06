@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.movie.mapper.RoleFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.movie.model.RoleFunction" >
+    <constructor >
+      <idArg column="role_function_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="role_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="function_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_function_id, role_id, function_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_function
+    where role_function_id = #{roleFunctionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from role_function
+    where role_function_id = #{roleFunctionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.movie.model.RoleFunction" >
+    insert into role_function (role_function_id, role_id, function_id
+      )
+    values (#{roleFunctionId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{functionId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.movie.model.RoleFunction" >
+    insert into role_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleFunctionId != null" >
+        role_function_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="functionId != null" >
+        function_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleFunctionId != null" >
+        #{roleFunctionId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="functionId != null" >
+        #{functionId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.movie.model.RoleFunction" >
+    update role_function
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="functionId != null" >
+        function_id = #{functionId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where role_function_id = #{roleFunctionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.movie.model.RoleFunction" >
+    update role_function
+    set role_id = #{roleId,jdbcType=BIGINT},
+      function_id = #{functionId,jdbcType=BIGINT}
+    where role_function_id = #{roleFunctionId,jdbcType=BIGINT}
+  </update>
+</mapper>
