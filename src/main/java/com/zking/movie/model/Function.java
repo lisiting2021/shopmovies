@@ -55,6 +55,7 @@ public class Function {
     }
 
     public void setParentId(Integer parentId) {
+        System.out.println("设置值了："+parentId);
         this.parentId = parentId;
     }
 

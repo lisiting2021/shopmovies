@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.movie.mapper.MovieMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.movie.model.Movie" >
+    <constructor >
+      <idArg column="movie_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="movie_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_english" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_director" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_actor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_review" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_length" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="movie_price" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="movie_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="movie_type" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="movie_rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="movie_country" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="evaluate" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="views" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="movie_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    movie_id, movie_name, movie_english, movie_director, movie_actor, movie_review, movie_length, 
+    movie_price, movie_state, movie_type, movie_rating, movie_country, evaluate, views, 
+    movie_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from movie
+    where movie_id = #{movieId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from movie
+    where movie_id = #{movieId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.movie.model.Movie" >
+    insert into movie (movie_id, movie_name, movie_english, 
+      movie_director, movie_actor, movie_review, 
+      movie_length, movie_price, movie_state, 
+      movie_type, movie_rating, movie_country, 
+      evaluate, views, movie_time
+      )
+    values (#{movieId,jdbcType=BIGINT}, #{movieName,jdbcType=VARCHAR}, #{movieEnglish,jdbcType=VARCHAR}, 
+      #{movieDirector,jdbcType=VARCHAR}, #{movieActor,jdbcType=VARCHAR}, #{movieReview,jdbcType=VARCHAR}, 
+      #{movieLength,jdbcType=VARCHAR}, #{moviePrice,jdbcType=DOUBLE}, #{movieState,jdbcType=INTEGER}, 
+      #{movieType,jdbcType=BIGINT}, #{movieRating,jdbcType=DOUBLE}, #{movieCountry,jdbcType=VARCHAR}, 
+      #{evaluate,jdbcType=BIGINT}, #{views,jdbcType=BIGINT}, #{movieTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.movie.model.Movie" >
+    insert into movie
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="movieId != null" >
+        movie_id,
+      </if>
+      <if test="movieName != null" >
+        movie_name,
+      </if>
+      <if test="movieEnglish != null" >
+        movie_english,
+      </if>
+      <if test="movieDirector != null" >
+        movie_director,
+      </if>
+      <if test="movieActor != null" >
+        movie_actor,
+      </if>
+      <if test="movieReview != null" >
+        movie_review,
+      </if>
+      <if test="movieLength != null" >
+        movie_length,
+      </if>
+      <if test="moviePrice != null" >
+        movie_price,
+      </if>
+      <if test="movieState != null" >
+        movie_state,
+      </if>
+      <if test="movieType != null" >
+        movie_type,
+      </if>
+      <if test="movieRating != null" >
+        movie_rating,
+      </if>
+      <if test="movieCountry != null" >
+        movie_country,
+      </if>
+      <if test="evaluate != null" >
+        evaluate,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="movieTime != null" >
+        movie_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="movieId != null" >
+        #{movieId,jdbcType=BIGINT},
+      </if>
+      <if test="movieName != null" >
+        #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieEnglish != null" >
+        #{movieEnglish,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDirector != null" >
+        #{movieDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="movieActor != null" >
+        #{movieActor,jdbcType=VARCHAR},
+      </if>
+      <if test="movieReview != null" >
+        #{movieReview,jdbcType=VARCHAR},
+      </if>
+      <if test="movieLength != null" >
+        #{movieLength,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePrice != null" >
+        #{moviePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="movieState != null" >
+        #{movieState,jdbcType=INTEGER},
+      </if>
+      <if test="movieType != null" >
+        #{movieType,jdbcType=BIGINT},
+      </if>
+      <if test="movieRating != null" >
+        #{movieRating,jdbcType=DOUBLE},
+      </if>
+      <if test="movieCountry != null" >
+        #{movieCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        #{evaluate,jdbcType=BIGINT},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=BIGINT},
+      </if>
+      <if test="movieTime != null" >
+        #{movieTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.movie.model.Movie" >
+    update movie
+    <set >
+      <if test="movieName != null" >
+        movie_name = #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieEnglish != null" >
+        movie_english = #{movieEnglish,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDirector != null" >
+        movie_director = #{movieDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="movieActor != null" >
+        movie_actor = #{movieActor,jdbcType=VARCHAR},
+      </if>
+      <if test="movieReview != null" >
+        movie_review = #{movieReview,jdbcType=VARCHAR},
+      </if>
+      <if test="movieLength != null" >
+        movie_length = #{movieLength,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePrice != null" >
+        movie_price = #{moviePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="movieState != null" >
+        movie_state = #{movieState,jdbcType=INTEGER},
+      </if>
+      <if test="movieType != null" >
+        movie_type = #{movieType,jdbcType=BIGINT},
+      </if>
+      <if test="movieRating != null" >
+        movie_rating = #{movieRating,jdbcType=DOUBLE},
+      </if>
+      <if test="movieCountry != null" >
+        movie_country = #{movieCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        evaluate = #{evaluate,jdbcType=BIGINT},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=BIGINT},
+      </if>
+      <if test="movieTime != null" >
+        movie_time = #{movieTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where movie_id = #{movieId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.movie.model.Movie" >
+    update movie
+    set movie_name = #{movieName,jdbcType=VARCHAR},
+      movie_english = #{movieEnglish,jdbcType=VARCHAR},
+      movie_director = #{movieDirector,jdbcType=VARCHAR},
+      movie_actor = #{movieActor,jdbcType=VARCHAR},
+      movie_review = #{movieReview,jdbcType=VARCHAR},
+      movie_length = #{movieLength,jdbcType=VARCHAR},
+      movie_price = #{moviePrice,jdbcType=DOUBLE},
+      movie_state = #{movieState,jdbcType=INTEGER},
+      movie_type = #{movieType,jdbcType=BIGINT},
+      movie_rating = #{movieRating,jdbcType=DOUBLE},
+      movie_country = #{movieCountry,jdbcType=VARCHAR},
+      evaluate = #{evaluate,jdbcType=BIGINT},
+      views = #{views,jdbcType=BIGINT},
+      movie_time = #{movieTime,jdbcType=TIMESTAMP}
+    where movie_id = #{movieId,jdbcType=BIGINT}
+  </update>
+</mapper>

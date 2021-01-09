@@ -1,7 +1,11 @@
 package com.zking.movie.mapper;
 
 import com.zking.movie.model.Function;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface FunctionMapper {
     int deleteByPrimaryKey(Long functionId);
 
@@ -14,4 +18,7 @@ public interface FunctionMapper {
     int updateByPrimaryKeySelective(Function record);
 
     int updateByPrimaryKey(Function record);
+
+    List<Function> list(Integer parentId);
+
 }

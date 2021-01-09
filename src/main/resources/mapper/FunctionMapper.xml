@@ -20,6 +20,16 @@
     from function
     where function_id = #{functionId,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from function where 1=1
+    <if test="parentId == null">
+      and parent_id is null
+    </if>
+    <if test="parentId != null">
+      and parent_id = #{parentId,jdbcType=INTEGER}
+    </if>
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from function
     where function_id = #{functionId,jdbcType=BIGINT}
