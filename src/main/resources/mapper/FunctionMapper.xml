@@ -6,11 +6,31 @@
       <idArg column="function_id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="function_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="function_type" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="parent_id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+
+<!--  一对多关系映射-->
+  <resultMap id="many2one" type="com.zking.movie.model.Function">
+      <id column="function_id" property="functionId" javaType="java.lang.Long"/>
+      <result column="function_name" property="functionName" javaType="java.lang.String"/>
+    <result column="function_type" property="functionType" javaType="java.lang.String"/>
+    <result column="parent_id" property="parentId" javaType="java.lang.Long"/>
+    <result column="url" property="url" javaType="java.lang.String"/>
+    <result column="icon" property="icon" javaType="java.lang.String"/>
+    <collection property="children" ofType="com.zking.movie.model.Function">
+      <id column="function_id" property="functionId" javaType="java.lang.Long"/>
+      <result column="function_name" property="functionName" javaType="java.lang.String"/>
+      <result column="function_type" property="functionType" javaType="java.lang.String"/>
+      <result column="parent_id" property="parentId" javaType="java.lang.Long"/>
+      <result column="url" property="url" javaType="java.lang.String"/>
+      <result column="icon" property="icon" javaType="java.lang.String"/>
+    </collection>
+  </resultMap>
+  
+  
   <sql id="Base_Column_List" >
     function_id, function_name, function_type, parent_id, url, icon
   </sql>
@@ -20,16 +40,16 @@
     from function
     where function_id = #{functionId,jdbcType=BIGINT}
   </select>
-  <select id="list" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from function where 1=1
-    <if test="parentId == null">
-      and parent_id is null
-    </if>
-    <if test="parentId != null">
-      and parent_id = #{parentId,jdbcType=INTEGER}
-    </if>
-
+  <select id="parent" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from function where parent_id is null
   </select>
+  <select id="son" resultMap="many2one">
+        select <include refid="Base_Column_List"/> from function where 1=1
+        <if test="parentId != null">
+          and parent_id = #{functionId}
+        </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from function
     where function_id = #{functionId,jdbcType=BIGINT}

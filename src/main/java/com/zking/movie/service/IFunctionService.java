@@ -19,5 +19,16 @@ public interface IFunctionService {
 
     int updateByPrimaryKey(Function record);
 
-    List<Function> list(Integer parentId);
+    /**
+     * 查询所有的父菜单
+     * @return
+     */
+    List<Function> parent();
+
+    /**
+     * 查询所有子菜单
+     * @param
+     * @return
+     */
+    List<Function> son(Long functionID);
 }

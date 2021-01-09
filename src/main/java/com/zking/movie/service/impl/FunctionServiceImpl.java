@@ -45,7 +45,12 @@ public class FunctionServiceImpl implements IFunctionService {
     }
 
     @Override
-    public List<Function> list(Integer parentId) {
-        return functionMapper.list(parentId);
+    public List<Function> parent() {
+        return functionMapper.parent();
+    }
+
+    @Override
+    public List<Function> son(Long functionID) {
+        return functionMapper.son(functionID);
     }
 }

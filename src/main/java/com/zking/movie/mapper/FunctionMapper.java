@@ -1,6 +1,7 @@
 package com.zking.movie.mapper;
 
 import com.zking.movie.model.Function;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +20,17 @@ public interface FunctionMapper {
 
     int updateByPrimaryKey(Function record);
 
-    List<Function> list(Integer parentId);
+    /**
+     * 查询所有的父菜单
+     * @return
+     */
+    List<Function> parent();
+
+    /**
+     * 查询所有子菜单
+     * @param
+     * @return
+     */
+    List<Function> son(Long functionId);
 
 }

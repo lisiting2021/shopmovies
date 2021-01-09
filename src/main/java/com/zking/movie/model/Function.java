@@ -1,5 +1,14 @@
 package com.zking.movie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@ToString
 public class Function {
     private Long functionId;
 
@@ -7,13 +16,20 @@ public class Function {
 
     private String functionType;
 
-    private Integer parentId;
+    private Long parentId;
 
     private String url;
 
     private String icon;
 
-    public Function(Long functionId, String functionName, String functionType, Integer parentId, String url, String icon) {
+//    一对多映射
+    private List<Function> children=new ArrayList<>();
+
+    //多对一映射
+    @JsonIgnore
+    private Function function;
+
+    public Function(Long functionId, String functionName, String functionType, Long parentId, String url, String icon) {
         this.functionId = functionId;
         this.functionName = functionName;
         this.functionType = functionType;
@@ -50,11 +66,11 @@ public class Function {
         this.functionType = functionType;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         System.out.println("设置值了："+parentId);
         this.parentId = parentId;
     }
