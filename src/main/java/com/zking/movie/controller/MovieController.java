@@ -16,10 +16,4 @@ public class MovieController {
     @Autowired
     private IMovieServie iMovieServie;
 
-
-    @RequestMapping("/list")
-    @ResponseBody
-    public List list(Movie movie){
-    iMovieServie
-    }
 }
