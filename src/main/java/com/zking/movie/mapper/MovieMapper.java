@@ -2,6 +2,8 @@ package com.zking.movie.mapper;
 
 import com.zking.movie.model.Movie;
 
+import java.util.List;
+
 public interface MovieMapper {
     int deleteByPrimaryKey(Long movieId);
 
@@ -14,4 +16,6 @@ public interface MovieMapper {
     int updateByPrimaryKeySelective(Movie record);
 
     int updateByPrimaryKey(Movie record);
+
+    List<Movie> list(Movie movie);
 }
