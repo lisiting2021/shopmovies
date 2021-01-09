@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.movie.mapper.CommentsMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.movie.model.Comments" >
+    <constructor >
+      <idArg column="comments_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="comments_content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="give" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="movie_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comments_id, user_id, comments_content, give, movie_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comments
+    where comments_id = #{commentsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from comments
+    where comments_id = #{commentsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.movie.model.Comments" >
+    insert into comments (comments_id, user_id, comments_content, 
+      give, movie_id)
+    values (#{commentsId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{commentsContent,jdbcType=VARCHAR}, 
+      #{give,jdbcType=BIGINT}, #{movieId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.movie.model.Comments" >
+    insert into comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentsId != null" >
+        comments_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="commentsContent != null" >
+        comments_content,
+      </if>
+      <if test="give != null" >
+        give,
+      </if>
+      <if test="movieId != null" >
+        movie_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentsId != null" >
+        #{commentsId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="commentsContent != null" >
+        #{commentsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="give != null" >
+        #{give,jdbcType=BIGINT},
+      </if>
+      <if test="movieId != null" >
+        #{movieId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.movie.model.Comments" >
+    update comments
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="commentsContent != null" >
+        comments_content = #{commentsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="give != null" >
+        give = #{give,jdbcType=BIGINT},
+      </if>
+      <if test="movieId != null" >
+        movie_id = #{movieId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where comments_id = #{commentsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.movie.model.Comments" >
+    update comments
+    set user_id = #{userId,jdbcType=BIGINT},
+      comments_content = #{commentsContent,jdbcType=VARCHAR},
+      give = #{give,jdbcType=BIGINT},
+      movie_id = #{movieId,jdbcType=BIGINT}
+    where comments_id = #{commentsId,jdbcType=BIGINT}
+  </update>
+</mapper>

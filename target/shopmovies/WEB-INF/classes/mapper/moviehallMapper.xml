@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.movie.mapper.moviehallMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.movie.model.moviehall" >
+    <constructor >
+      <idArg column="moviehall_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="moviehall_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dict_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    moviehall_id, moviehall_name, dict_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from moviehall
+    where moviehall_id = #{moviehallId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from moviehall
+    where moviehall_id = #{moviehallId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.movie.model.moviehall" >
+    insert into moviehall (moviehall_id, moviehall_name, dict_name
+      )
+    values (#{moviehallId,jdbcType=BIGINT}, #{moviehallName,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.movie.model.moviehall" >
+    insert into moviehall
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moviehallId != null" >
+        moviehall_id,
+      </if>
+      <if test="moviehallName != null" >
+        moviehall_name,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moviehallId != null" >
+        #{moviehallId,jdbcType=BIGINT},
+      </if>
+      <if test="moviehallName != null" >
+        #{moviehallName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.movie.model.moviehall" >
+    update moviehall
+    <set >
+      <if test="moviehallName != null" >
+        moviehall_name = #{moviehallName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where moviehall_id = #{moviehallId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.movie.model.moviehall" >
+    update moviehall
+    set moviehall_name = #{moviehallName,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR}
+    where moviehall_id = #{moviehallId,jdbcType=BIGINT}
+  </update>
+</mapper>

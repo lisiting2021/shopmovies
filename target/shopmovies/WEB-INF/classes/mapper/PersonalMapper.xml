@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.movie.mapper.PersonalMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.movie.model.Personal" >
+    <constructor >
+      <idArg column="personal_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="head" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="brief" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    personal_id, head, sex, brief
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from personal
+    where personal_id = #{personalId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from personal
+    where personal_id = #{personalId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.movie.model.Personal" >
+    insert into personal (personal_id, head, sex, 
+      brief)
+    values (#{personalId,jdbcType=BIGINT}, #{head,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{brief,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.movie.model.Personal" >
+    insert into personal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="personalId != null" >
+        personal_id,
+      </if>
+      <if test="head != null" >
+        head,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="brief != null" >
+        brief,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="personalId != null" >
+        #{personalId,jdbcType=BIGINT},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.movie.model.Personal" >
+    update personal
+    <set >
+      <if test="head != null" >
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where personal_id = #{personalId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.movie.model.Personal" >
+    update personal
+    set head = #{head,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      brief = #{brief,jdbcType=VARCHAR}
+    where personal_id = #{personalId,jdbcType=BIGINT}
+  </update>
+</mapper>
