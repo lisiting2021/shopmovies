@@ -44,10 +44,7 @@
         select <include refid="Base_Column_List"/> from function where parent_id is null
   </select>
   <select id="son" resultMap="many2one">
-        select <include refid="Base_Column_List"/> from function where 1=1
-        <if test="parentId != null">
-          and parent_id = #{functionId}
-        </if>
+        select <include refid="Base_Column_List"/> from function where 1=1 and parent_id = #{functionId}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
