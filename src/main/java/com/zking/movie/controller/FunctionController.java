@@ -27,7 +27,6 @@ public class FunctionController {
         System.out.println("123456");
         //定义一个list用来保存所有的父节点
         List<Function> list=new ArrayList();
-        List<Function> son = new ArrayList<>();
         if(function.getParentId()==null||function.getParentId().equals(0)){
             //调用查询所有父节点的方法
             list = iFunctionService.parent();
